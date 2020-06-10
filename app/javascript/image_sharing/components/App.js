@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header title='Tell us what you think' />
+        <Header title="Tell us what you think" />
         <Footer />
       </div>
     );
