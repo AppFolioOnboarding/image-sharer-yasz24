@@ -1,19 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'mobx-react';
 import App from './components/App';
-// eslint-disable-next-line import/no-named-as-default
 import FeedbackStore from './stores/FeedbackStore';
 
-const stores = {
-  feedbackStore: new FeedbackStore()
-};
-
-/* Initialize your store here*/
+const feedbackStore = new FeedbackStore();
 
 ReactDOM.render(
-  <Provider stores={stores}>
-    <App />
-  </Provider>,
+  <App feedbackStore={feedbackStore} />,
   document.getElementById('feedback-root')
 );

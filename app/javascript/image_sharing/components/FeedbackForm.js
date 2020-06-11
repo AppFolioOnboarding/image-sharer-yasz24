@@ -3,25 +3,22 @@ import { observer } from 'mobx-react';
 
 @observer
 class FeedbackForm extends Component {
-  handleChange(type) {
-    return (event) => {
-      const store = this.props.store;
-      const value = event.target.value;
-      if (type === 'userName') {
-        store.setUserName(value);
-      } else {
-        store.setComments(value);
-      }
-    };
-  }
+  handleChange = type => (event) => {
+    const store = this.props.store;
+    const value = event.target.value;
+    if (type === 'userName') {
+      store.setUserName(value);
+    } else {
+      store.setComments(value);
+    }
+  };
 
   render() {
     const store = this.props.store;
     return (
       <div className="container">
         <div className="form-group">
-          {/* eslint-disable-next-line jsx-a11y/label-has-for */}
-          <label className="col-form-label">Your Name</label>
+          <label className="col-form-label" htmlFor="userName">Your Name</label>
           <input
             type="text"
             id="userName"
@@ -31,8 +28,7 @@ class FeedbackForm extends Component {
           />
         </div>
         <div className="form-group">
-          {/* eslint-disable-next-line jsx-a11y/label-has-for */}
-          <label className="col-form-label">Comments</label>
+          <label className="col-form-label" htmlFor="comments">Comments</label>
           <textarea
             className="form-control"
             id="comments"

@@ -4,18 +4,21 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 
 import FeedbackForm from '../../components/FeedbackForm';
-// eslint-disable-next-line import/no-named-as-default
 import FeedbackStore from '../../stores/FeedbackStore';
 
-const store = new FeedbackStore();
-
 describe('<FeedbackForm />', () => {
+  let store;
+  beforeEach(() => {
+    store = new FeedbackStore();
+  });
+
   it('make sure that text can be input in the name field', () => {
     const wrapper = mount(<FeedbackForm store={store} />);
     const input = wrapper.find('#userName');
     const name = 'Yash';
 
     input.simulate('change', { target: { value: name } });
+    expect(store.userName).to.equal(name);
     expect(input.instance().value).to.equal(name);
   });
 
@@ -25,6 +28,7 @@ describe('<FeedbackForm />', () => {
     const feedback = 'good feedback';
 
     input.simulate('change', { target: { value: feedback } });
+    expect(store.comments).to.equal(feedback);
     expect(input.instance().value).to.equal(feedback);
   });
 });

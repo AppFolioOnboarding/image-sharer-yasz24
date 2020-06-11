@@ -1,7 +1,6 @@
 import { action, observable } from 'mobx';
 
-
-export class FeedbackStore {
+export default class FeedbackStore {
   @observable userName = '';
   @observable comments = '';
 
@@ -13,5 +12,3 @@ export class FeedbackStore {
     this.comments = comments;
   }
 }
-
-export default FeedbackStore;
