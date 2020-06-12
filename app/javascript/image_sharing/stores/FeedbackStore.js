@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 
 export default class FeedbackStore {
   @observable userName = '';
@@ -10,5 +10,14 @@ export default class FeedbackStore {
 
   @action setComments(comments) {
     this.comments = comments;
+  }
+
+  @computed get feedback() {
+    const feedback = {
+      userName: this.userName,
+      comments: this.comments
+    };
+
+    return feedback;
   }
 }

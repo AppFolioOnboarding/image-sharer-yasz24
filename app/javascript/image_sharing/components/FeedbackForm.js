@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
+import submitFeedback from '../api/feedback';
 
 @observer
 class FeedbackForm extends Component {
@@ -11,6 +12,13 @@ class FeedbackForm extends Component {
     } else {
       store.setComments(value);
     }
+  };
+
+  handleSubmit = () => {
+    const store = this.props.store;
+    const feedback = store.feedback;
+
+    this.props.submitFeedback(feedback);
   };
 
   render() {
@@ -37,11 +45,21 @@ class FeedbackForm extends Component {
             rows="2"
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="Submit" />
+        <input
+          id="submitButton"
+          type="submit"
+          className="btn btn-primary"
+          value="Submit"
+          onClick={this.handleSubmit}
+        />
       </div>
     );
   }
 }
+
+FeedbackForm.defaultProps = {
+  submitFeedback,
+};
 
 export default FeedbackForm;
 

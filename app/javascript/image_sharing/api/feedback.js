@@ -1,7 +1,6 @@
-//import { post } from "../utils/helper";
+import { post } from '../utils/helper';
 
-export class Feedback {
-  /* Implement your service */
+export default function submitFeedback(feedback) {
+  return post('http://localhost:3000/api/feedbacks', feedback);
 }
 
-export default Feedback;

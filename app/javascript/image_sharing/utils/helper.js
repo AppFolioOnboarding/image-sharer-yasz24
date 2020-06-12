@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'whatwg-fetch';
+import fetch from 'node-fetch';
 
 const HEADERS = {
   Accept: 'application/json',
