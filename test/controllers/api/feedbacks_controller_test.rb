@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class FeedbacksControllerTest < ActionDispatch::IntegrationTest
-  test "should create feedback" do
+  test 'should create feedback' do
     assert_difference('Feedback.count') do
       post api_feedbacks_path, params: { feedback: { userName: 'yash', comments: 'good comment' } }
     end
@@ -9,7 +9,7 @@ class FeedbacksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should not create feedback" do
+  test 'should not create feedback' do
     assert_no_difference('Feedback.count') do
       post api_feedbacks_path, params: { feedback: { userName: 'yash' } }
     end
