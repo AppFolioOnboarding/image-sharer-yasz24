@@ -1,5 +1,14 @@
-export class FeedbackStore {
-  /* Implement your feedback store*/
-}
+import { action, observable } from 'mobx';
 
-export default FeedbackStore;
+export default class FeedbackStore {
+  @observable userName = '';
+  @observable comments = '';
+
+  @action setUserName(userName) {
+    this.userName = userName;
+  }
+
+  @action setComments(comments) {
+    this.comments = comments;
+  }
+}

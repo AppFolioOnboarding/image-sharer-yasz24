@@ -1,6 +1,7 @@
 {
   "parser": "babel-eslint",
   "extends": "appfolio-react",
+  "rules": { "jsx-a11y/label-has-for": "off" },
   "parserOptions": {
     "ecmaFeatures": {
       "legacyDecorators": true
