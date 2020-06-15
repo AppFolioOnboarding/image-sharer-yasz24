@@ -13,7 +13,7 @@ module Api
     private
 
     def feedback_params
-      params.require(:feedback).permit(:userName, :comments)
+      params.require(:feedback).permit(:user_name, :comments)
     end
   end
 end

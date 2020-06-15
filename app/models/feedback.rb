@@ -1,4 +1,4 @@
 class Feedback < ApplicationRecord
-  validates :userName, presence: true
+  validates :user_name, presence: true
   validates :comments, presence: true
 end
