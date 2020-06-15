@@ -7,6 +7,9 @@ class FeedbacksControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :success
+    created_feedback = Feedback.last
+    assert_equal 'yash', created_feedback.user_name
+    assert_equal 'good comment', created_feedback.comments
   end
 
   def test_create__failure
