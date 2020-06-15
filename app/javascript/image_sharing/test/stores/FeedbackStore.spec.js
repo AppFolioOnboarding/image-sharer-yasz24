@@ -1,5 +1,6 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
+import sinon from 'sinon';
 import FeedbackStore from '../../stores/FeedbackStore';
 
 describe('FeedbackStore', () => {
@@ -29,17 +30,11 @@ describe('FeedbackStore', () => {
     expect(store.comments).to.equal(comments);
   });
 
-  it('feedback getter gets the right feedback object', () => {
-    const userName = 'Yash';
-    const comments = 'good feedback';
-    const feedbackObj = {
-      userName,
-      comments
-    };
+  it('makes request to submitFeedback', () => {
+    store.submitFeedback = sinon.stub().resolves();
 
-    store.setUserName(userName);
-    store.setComments(comments);
+    store.submitFeedback();
 
-    expect(store.feedback).to.deep.equal(feedbackObj);
+    sinon.assert.calledOnce(store.submitFeedback);
   });
 });

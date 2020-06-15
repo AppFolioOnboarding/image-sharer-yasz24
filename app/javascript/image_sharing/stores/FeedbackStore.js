@@ -1,8 +1,13 @@
-import { action, computed, observable } from 'mobx';
+import { action, observable } from 'mobx';
+import { submitFeedback } from '../api/feedback';
 
 export default class FeedbackStore {
   @observable userName = '';
   @observable comments = '';
+
+  constructor(api = { submitFeedback }) {
+    this.api = api;
+  }
 
   @action setUserName(userName) {
     this.userName = userName;
@@ -12,12 +17,12 @@ export default class FeedbackStore {
     this.comments = comments;
   }
 
-  @computed get feedback() {
+  submitFeedback = () => {
     const feedback = {
       userName: this.userName,
       comments: this.comments
     };
 
-    return feedback;
-  }
+    return this.api.submitFeedback(feedback);
+  };
 }

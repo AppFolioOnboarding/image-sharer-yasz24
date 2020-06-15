@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import assert from 'assert';
 import nock from 'nock';
-import submitFeedback from '../../api/feedback.js';
+import { submitFeedback } from '../../api/feedback.js';
 
 
 const BASE_URL = 'http://localhost:3000';

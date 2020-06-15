@@ -34,11 +34,12 @@ describe('<FeedbackForm />', () => {
   });
 
   it('clicking submit sends feedback to the backend', () => {
-    const spy = sinon.spy();
-    const wrapper = mount(<FeedbackForm store={store} submitFeedback={spy} />);
+    store.submitFeedback = sinon.stub().resolves();
+    //const spy = sinon.spy();
+    const wrapper = mount(<FeedbackForm store={store} />);
 
     wrapper.find('#submitButton').simulate('click');
 
-    sinon.assert.calledOnce(spy);
+    sinon.assert.calledOnce(store.submitFeedback);
   });
 });

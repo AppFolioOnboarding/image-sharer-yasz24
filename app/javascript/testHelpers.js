@@ -3,6 +3,8 @@
 import 'jsdom-global/register';
 import Adapter from 'enzyme-adapter-react-16/build/index';
 import { configure } from 'enzyme';
+import { JSDOM } from 'jsdom';
+import nock from 'nock';
 
 
 configure({ adapter: new Adapter() });
@@ -22,3 +24,20 @@ process.prependListener('exit', (code) => {
     process.exit(1);
   }
 });
+
+//
+// Set up the DOM (global.window needed for apiHelpers)
+//
+const jsdom = new JSDOM(
+  undefined,
+  {
+    url: 'http://localhost:3000',
+  }
+);
+const { window } = jsdom;
+// Setup global
+global.window = window;
+//
+// Disable any real network requests
+//
+nock.disableNetConnect();

@@ -1,6 +1,7 @@
 import { post } from '../utils/helper';
 
-export default function submitFeedback(feedback) {
-  return post('http://localhost:3000/api/feedbacks', feedback);
+// eslint-disable-next-line import/prefer-default-export
+export function submitFeedback(feedback) {
+  return post('/api/feedbacks', feedback);
 }
 
