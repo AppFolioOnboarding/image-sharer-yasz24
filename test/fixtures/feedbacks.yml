@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  userName: Yash
+  user_name: Yash
   comments: good comments
 
 two:
-  userName: yash
+  user_name: yash
   comments: Good Comments

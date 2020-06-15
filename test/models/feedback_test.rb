@@ -1,19 +1,26 @@
 require 'test_helper'
 
 class FeedbackTest < ActiveSupport::TestCase
-  test 'creating feedback with name + comments works' do
-    feedback = Feedback.new(userName: 'yash', comments: 'comment')
+  def test_feedback__valid
+    feedback = Feedback.new(user_name: 'yash', comments: 'comment')
+
+    assert_predicate feedback, :valid?
     assert feedback.save
   end
 
-  test 'creating feedback without name/comments should not work' do
-    no_name_comments = Feedback.new
-    assert_not no_name_comments.save
+  def test_feedback__invalid_if_comments_missing
+    feedback = Feedback.new(user_name: 'yash')
 
-    no_comments = Feedback.new(userName: 'yash')
-    assert_not no_comments.save
+    refute_predicate feedback, :valid?
+    assert_equal "can't be blank", feedback.errors.messages[:comments].first
+    assert_not feedback.save
+  end
 
-    no_name = Feedback.new(comments: 'comment')
-    assert_not no_name.save
+  def test_feedback__invalid_if_name_missing
+    feedback = Feedback.new(comments: 'good comments')
+
+    refute_predicate feedback, :valid?
+    assert_equal "can't be blank", feedback.errors.messages[:user_name].first
+    assert_not feedback.save
   end
 end

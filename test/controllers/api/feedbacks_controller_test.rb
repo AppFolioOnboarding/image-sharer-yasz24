@@ -1,17 +1,17 @@
 require 'test_helper'
 
 class FeedbacksControllerTest < ActionDispatch::IntegrationTest
-  test 'should create feedback' do
-    assert_difference('Feedback.count') do
-      post api_feedbacks_path, params: { feedback: { userName: 'yash', comments: 'good comment' } }
+  def test_create__success
+    assert_difference('Feedback.count', 1) do
+      post api_feedbacks_path, params: { feedback: { user_name: 'yash', comments: 'good comment' } }
     end
 
     assert_response :success
   end
 
-  test 'should not create feedback' do
+  def test_create__failure
     assert_no_difference('Feedback.count') do
-      post api_feedbacks_path, params: { feedback: { userName: 'yash' } }
+      post api_feedbacks_path, params: { feedback: { user_name: 'yash' } }
     end
 
     assert_response :unprocessable_entity
