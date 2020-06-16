@@ -2,6 +2,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
+import sinon from 'sinon';
 
 import FeedbackForm from '../../components/FeedbackForm';
 import FeedbackStore from '../../stores/FeedbackStore';
@@ -30,5 +31,15 @@ describe('<FeedbackForm />', () => {
     input.simulate('change', { target: { value: feedback } });
     expect(store.comments).to.equal(feedback);
     expect(input.instance().value).to.equal(feedback);
+  });
+
+  it('clicking submit sends feedback to the backend', () => {
+    store.submitFeedback = sinon.stub().resolves();
+    //const spy = sinon.spy();
+    const wrapper = mount(<FeedbackForm store={store} />);
+
+    wrapper.find('#submitButton').simulate('click');
+
+    sinon.assert.calledOnce(store.submitFeedback);
   });
 });

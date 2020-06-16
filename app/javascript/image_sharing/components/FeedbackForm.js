@@ -37,7 +37,13 @@ class FeedbackForm extends Component {
             rows="2"
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="Submit" />
+        <input
+          id="submitButton"
+          type="submit"
+          className="btn btn-primary"
+          value="Submit"
+          onClick={this.props.store.submitFeedback}
+        />
       </div>
     );
   }

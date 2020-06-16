@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import 'whatwg-fetch';
+import fetch from 'node-fetch';
 
 const HEADERS = {
   Accept: 'application/json',
@@ -65,7 +65,8 @@ function checkResponseStatus(res) {
  * Perform an HTTP POST to the API and parse the response as JSON
  */
 export function post(path, body) {
-  return fetch(path, {
+  const hostname = `${window.location.protocol}//${window.location.host}`;
+  return fetch(`${hostname}${path}`, {
     body: JSON.stringify(body),
     credentials: 'same-origin',
     headers: Object.assign({ 'X-CSRF-Token': getCsrfToken() }, HEADERS),
@@ -73,3 +74,4 @@ export function post(path, body) {
     redirect: 'error',
   }).then(checkResponseStatus);
 }
+

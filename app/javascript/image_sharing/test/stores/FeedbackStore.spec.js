@@ -1,11 +1,17 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
+import sinon from 'sinon';
 import FeedbackStore from '../../stores/FeedbackStore';
 
 describe('FeedbackStore', () => {
   let store;
   beforeEach(() => {
     store = new FeedbackStore();
+  });
+
+  it('has empty strings as default values', () => {
+    expect(store.userName).to.equal('');
+    expect(store.comments).to.equal('');
   });
 
   it('setUserName action updates the store userName', () => {
@@ -22,5 +28,14 @@ describe('FeedbackStore', () => {
     store.setComments(comments);
 
     expect(store.comments).to.equal(comments);
+  });
+
+  it('makes request to submitFeedback', () => {
+    const apiStub = sinon.stub().resolves();
+    store = new FeedbackStore({ submitFeedback: apiStub });
+
+    store.submitFeedback();
+
+    sinon.assert.calledOnce(apiStub);
   });
 });

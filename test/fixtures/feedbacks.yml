@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_name: Yash
+  comments: good comments
+
+two:
+  user_name: yash
+  comments: Good Comments
