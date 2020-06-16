@@ -31,10 +31,11 @@ describe('FeedbackStore', () => {
   });
 
   it('makes request to submitFeedback', () => {
-    store.submitFeedback = sinon.stub().resolves();
+    const apiStub = sinon.stub().resolves();
+    store = new FeedbackStore({ submitFeedback: apiStub });
 
     store.submitFeedback();
 
-    sinon.assert.calledOnce(store.submitFeedback);
+    sinon.assert.calledOnce(apiStub);
   });
 });
