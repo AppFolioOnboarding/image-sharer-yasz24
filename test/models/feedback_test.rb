@@ -5,7 +5,6 @@ class FeedbackTest < ActiveSupport::TestCase
     feedback = Feedback.new(user_name: 'yash', comments: 'comment')
 
     assert_predicate feedback, :valid?
-    assert feedback.save
   end
 
   def test_feedback__invalid_if_comments_missing
@@ -13,7 +12,6 @@ class FeedbackTest < ActiveSupport::TestCase
 
     refute_predicate feedback, :valid?
     assert_equal "can't be blank", feedback.errors.messages[:comments].first
-    assert_not feedback.save
   end
 
   def test_feedback__invalid_if_name_missing
@@ -21,6 +19,5 @@ class FeedbackTest < ActiveSupport::TestCase
 
     refute_predicate feedback, :valid?
     assert_equal "can't be blank", feedback.errors.messages[:user_name].first
-    assert_not feedback.save
   end
 end
